@@ -1,2 +1,25 @@
-# ATM-Project-
-The Mini ATM Simulation in Java is a basic console application that emulates the functionality of an Automated Teller Machine (ATM). It allows users to perform essential banking operations, including account authentication, balance inquiry, cash deposits, and cash withdrawals
+public class MiniATM {
+    public static void main(String[] args) {
+        User user = new User("Nambi Rajan", 10467780004, 1408, 30000.0);
+
+        ATM atm = new ATM();
+
+        boolean authenticated = atm.authenticateUser(user.getAccountNumber(), user.getPin());
+
+        if (authenticated) {
+            System.out.println("Welcome, " + user.getName() + "!");
+            double balance = atm.checkBalance();
+            System.out.println("Your account balance: $" + balance);
+
+            double withdrawalAmount = 100.0;
+            atm.withdraw(withdrawalAmount);
+            
+            balance = atm.checkBalance();
+            System.out.println("Withdrawn: $" + withdrawalAmount);
+            System.out.println("Updated balance: $" + balance);
+        } else {
+            System.out.println("Authentication failed. Please check your account number and PIN.");
+        }
+    }
+}
+
